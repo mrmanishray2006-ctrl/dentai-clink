@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>San Jose Dental Clinic | Los Angeles, CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --teal:#0d9488;--teal-d:#0a7c72;--teal-l:#14b8a8;
+  --teal-pale:#f0fdfa;--teal-pale2:#ccfbf1;
+  --navy:#0f2744;--navy2:#1a3a5c;
+  --gold:#d4a843;
+  --g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;
+  --g400:#9ca3af;--g600:#4b5563;--text:#111827;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:var(--text);overflow-x:hidden;line-height:1.6;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy);color:rgba(255,255,255,.8);font-size:.75rem;padding:.45rem 4vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.4rem;}
+.topbar a{color:rgba(255,255,255,.8);text-decoration:none;}
+.topbar a:hover{color:#fff;}
+.topbar-right{display:flex;gap:1.2rem;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);box-shadow:0 2px 16px rgba(0,0,0,.05);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;flex-shrink:0;}
+.nav-logo-icon{width:38px;height:38px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;animation:pulse-glow 3s ease-in-out infinite;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);line-height:1.1;}
+.nav-logo-text span{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:.62rem;font-weight:400;color:var(--g400);letter-spacing:.1em;text-transform:uppercase;}
+.nav-links{display:flex;gap:.15rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--g600);text-decoration:none;font-size:.85rem;font-weight:500;padding:.45rem .8rem;border-radius:8px;transition:all .18s;white-space:nowrap;}
+.nav-links a:hover{color:var(--teal);background:var(--teal-pale);}
+.nav-btn{background:var(--teal)!important;color:#fff!important;padding:.5rem 1.2rem!important;border-radius:30px!important;font-weight:600!important;box-shadow:0 4px 14px rgba(13,148,136,.3);}
+.nav-btn:hover{background:var(--teal-d)!important;transform:translateY(-1px);}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;z-index:310;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── MOBILE MENU DRAWER ── */
+.mobile-menu{
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(20px);
+  z-index:290;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  padding:80px 8vw 40px;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.mobile-menu.active{transform:translateX(0);}
+body.menu-open{overflow:hidden;}
+.mobile-menu ul{list-style:none;width:100%;display:flex;flex-direction:column;gap:.2rem;}
+.mobile-menu ul li a{display:block;padding:1rem 1.2rem;font-size:1.1rem;font-weight:600;color:var(--navy);text-decoration:none;border-radius:12px;transition:all .2s;border-bottom:1px solid var(--g100);}
+.mobile-menu ul li:last-child a{border-bottom:none;}
+.mobile-menu ul li a:hover{color:var(--teal);background:var(--teal-pale);}
+.mobile-menu-cta{margin-top:1.5rem;width:100%;}
+.mobile-menu-cta a{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:1rem;background:var(--teal);color:#fff;border-radius:30px;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 6px 20px rgba(13,148,136,.3);}
+.mobile-menu-phone{margin-top:.8rem;text-align:center;font-size:.88rem;color:var(--g600);}
+
+/* ── BTN ── */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.85rem 1.8rem;border-radius:30px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;border:none;transition:all .22s;}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 20px rgba(13,148,136,.28);}
+.btn-primary:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 10px 28px rgba(13,148,136,.36);}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--g200);}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-pale);}
+.btn-white{background:#fff;color:var(--teal);box-shadow:0 6px 24px rgba(0,0,0,.12);}
+.btn-white:hover{background:#f0fdfa;transform:translateY(-2px);}
+.btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);}
+.btn-outline-white:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+
+/* ── SECTION DEFAULTS ── */
+section{padding:5rem 5vw;position:relative;overflow:hidden;}
+.section-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:.65rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;color:var(--navy);line-height:1.2;}
+.section-title em{color:var(--teal);font-style:italic;}
+.section-desc{font-size:.95rem;color:var(--g600);line-height:1.75;max-width:540px;margin-top:.75rem;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(150deg,#fff 0%,#f0fdfa 50%,#ddf3f1 100%);min-height:90vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:6rem 5vw 4rem;}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+.hero-tooth-bg{position:absolute;right:2%;top:50%;transform:translateY(-50%);width:min(42vw,500px);opacity:.07;pointer-events:none;z-index:0;animation:float 6s ease-in-out infinite;}
+.hero-content,.hero-right{position:relative;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal-pale2);color:var(--teal-d);border:1px solid rgba(13,148,136,.25);padding:.38rem 1rem;border-radius:30px;font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp .7s ease both;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:700;line-height:1.1;color:var(--navy);margin-bottom:1.4rem;animation:fadeUp .7s .1s ease both;}
+.hero h1 em{color:var(--teal);font-style:italic;}
+.hero-desc{font-size:1rem;color:var(--g600);line-height:1.75;max-width:460px;margin-bottom:2rem;animation:fadeUp .7s .18s ease both;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .26s ease both;}
+.hero-right{display:flex;flex-direction:column;gap:1.2rem;animation:fadeUp .7s .12s ease both;}
+.hero-card{background:#fff;border:1px solid var(--g200);border-radius:18px;padding:1.5rem 1.6rem;box-shadow:0 12px 48px rgba(0,0,0,.10);}
+.hero-card-top{display:flex;align-items:center;gap:1rem;margin-bottom:.6rem;}
+.hero-card-icon{width:44px;height:44px;background:var(--teal-pale);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.hero-card-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--teal);line-height:1;}
+.hero-card-label{font-size:.78rem;color:var(--g400);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+.stars{color:var(--gold);font-size:.95rem;letter-spacing:.05em;}
+.hero-reviews{display:flex;align-items:center;gap:.9rem;background:#fff;border:1px solid var(--g200);border-radius:18px;padding:1.1rem 1.4rem;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.review-avatars{display:flex;}
+.review-avatar{width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--teal-pale2);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--teal);margin-left:-7px;}
+.review-avatar:first-child{margin-left:0;}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--navy);padding:1.3rem 5vw;display:flex;gap:2rem;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.trust-strip-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.trust-item{display:flex;align-items:center;gap:.65rem;color:rgba(255,255,255,.85);font-size:.83rem;font-weight:500;position:relative;z-index:1;}
+.trust-divider{width:1px;height:20px;background:rgba(255,255,255,.15);position:relative;z-index:1;}
+
+/* ── SERVICES ── */
+.services{background:var(--g50);}
+.services-head{text-align:center;margin-bottom:3.5rem;position:relative;z-index:1;}
+.services-head .section-desc{margin:.75rem auto 0;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;max-width:1140px;margin:0 auto;position:relative;z-index:1;}
+.service-card{background:#fff;border-radius:14px;padding:1.6rem 1.5rem;border:1.5px solid var(--g100);transition:all .24s;cursor:default;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;inset:0;border-radius:14px;box-shadow:inset 0 0 0 1.5px var(--teal);opacity:0;transition:opacity .24s;}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,0,0,.10);}
+.service-card:hover::after{opacity:1;}
+.svc-icon{width:50px;height:50px;border-radius:13px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;transition:transform .3s;}
+.service-card:hover .svc-icon{transform:scale(1.12) rotate(-5deg);}
+.service-card h3{font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;}
+.service-card p{font-size:.83rem;color:var(--g600);line-height:1.65;}
+.service-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:.9rem;font-size:.79rem;font-weight:600;color:var(--teal);text-decoration:none;opacity:0;transition:opacity .2s;}
+.service-card:hover .service-link{opacity:1;}
+
+/* ── STATS ── */
+.stats-section{background:var(--teal);padding:4rem 5vw;}
+.stats-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:#fff;line-height:1;display:block;}
+.stat-label{font-size:.78rem;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.1em;margin-top:.4rem;}
+
+/* ── WHY ── */
+#why{background:#fff;}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
+.why-quote-card{background:linear-gradient(145deg,var(--navy) 0%,var(--navy2) 100%);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;}
+.why-quote-card::before{content:'"';font-family:'Playfair Display',serif;font-size:10rem;color:rgba(255,255,255,.04);line-height:1;position:absolute;top:-1.5rem;left:1rem;}
+.why-quote-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:#fff;line-height:1.6;position:relative;z-index:1;margin-bottom:1.5rem;}
+.why-author{color:var(--teal-l);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1;}
+.why-stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.4rem;}
+.why-stat{background:rgba(255,255,255,.06);border-radius:11px;padding:.9rem 1.1rem;position:relative;z-index:1;}
+.why-stat-val{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--teal-l);}
+.why-stat-label{font-size:.7rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.08em;margin-top:.1rem;}
+.why-features{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem;}
+.why-feature{display:flex;gap:.9rem;align-items:flex-start;}
+.why-feature-check{width:30px;height:30px;min-width:30px;border-radius:9px;background:var(--teal-pale);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;margin-top:1px;border:1px solid var(--teal-pale2);}
+.why-feature h4{font-size:.92rem;font-weight:600;color:var(--navy);margin-bottom:.18rem;}
+.why-feature p{font-size:.82rem;color:var(--g600);line-height:1.6;}
+
+/* ── REVIEWS ── */
+.reviews-section{background:var(--g50);}
+.reviews-inner{position:relative;z-index:1;}
+.reviews-head{text-align:center;margin-bottom:3rem;}
+.reviews-head .section-desc{margin:.75rem auto 0;}
+.rating-summary{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:3rem;flex-wrap:wrap;}
+.rating-pill{display:flex;align-items:center;gap:.8rem;background:#fff;border:1px solid var(--g200);border-radius:12px;padding:.75rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.rating-pill-score{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1;}
+.rating-pill-info small{display:block;color:var(--g400);font-size:.7rem;margin-top:.1rem;}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:1000px;margin:0 auto;}
+.review-card{background:#fff;border-radius:14px;padding:1.6rem;border:1px solid var(--g100);box-shadow:0 4px 24px rgba(0,0,0,.07);transition:all .22s;}
+.review-card:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(0,0,0,.10);}
+.review-card-stars{color:var(--gold);margin-bottom:.85rem;}
+.review-card-text{font-size:.88rem;color:var(--g600);line-height:1.72;font-style:italic;margin-bottom:1rem;}
+.review-card-author{font-size:.76rem;font-weight:700;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;}
+.review-card-date{font-size:.7rem;color:var(--g400);margin-top:.12rem;}
+
+/* ── FAQ ── */
+.faq-section{background:#fff;}
+.faq-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:6rem;align-items:start;position:relative;z-index:1;}
+.faq-list{display:flex;flex-direction:column;gap:.65rem;margin-top:2rem;}
+.faq-item{border:1.5px solid var(--g100);border-radius:12px;overflow:hidden;transition:border-color .2s;}
+.faq-item.open{border-color:var(--teal);}
+.faq-question{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;color:var(--navy);transition:color .2s;gap:.8rem;}
+.faq-question:hover,.faq-item.open .faq-question{color:var(--teal);}
+.faq-icon{font-size:1rem;flex-shrink:0;transition:transform .25s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:.85rem;color:var(--g600);line-height:1.7;padding:0 1.2rem;}
+.faq-item.open .faq-answer{max-height:250px;padding:0 1.2rem 1rem;}
+
+/* ── HOURS ── */
+.hours-section{background:var(--g50);}
+.hours-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start;margin-top:3rem;position:relative;z-index:1;}
+.hours-table{width:100%;border-collapse:collapse;}
+.hours-table tr{border-bottom:1px solid var(--g100);}
+.hours-table tr:last-child{border-bottom:none;}
+.hours-table td{padding:.85rem 0;font-size:.88rem;color:#1f2937;}
+.hours-table td:first-child{font-weight:600;}
+.hours-table td:last-child{text-align:right;color:var(--teal);font-weight:600;}
+.hours-table .closed-day td{color:var(--g400)!important;}
+.contact-card{background:#fff;border-radius:20px;border:1px solid var(--g200);padding:2rem;box-shadow:0 12px 48px rgba(0,0,0,.10);}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:1.4rem;}
+.contact-row{display:flex;gap:.9rem;margin-bottom:1.2rem;align-items:flex-start;}
+.contact-row-icon{width:34px;height:34px;min-width:34px;background:var(--teal-pale);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+.contact-row-body strong{display:block;font-size:.81rem;font-weight:700;color:var(--navy);margin-bottom:.12rem;}
+.contact-row-body span{font-size:.83rem;color:var(--g600);line-height:1.55;}
+.contact-row-body a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+/* ── CTA ── */
+.cta-section{background:linear-gradient(135deg,var(--teal) 0%,#0a8a80 100%);padding:5.5rem 5vw;text-align:center;}
+.cta-inner{position:relative;z-index:1;}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:#fff;margin-bottom:1rem;}
+.cta-section p{color:rgba(255,255,255,.8);font-size:.97rem;margin-bottom:2rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);color:rgba(255,255,255,.65);padding:3.5rem 5vw 2rem;position:relative;overflow:hidden;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);position:relative;z-index:1;}
+.footer-brand-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.8rem;}
+.footer-brand-logo span{color:var(--teal-l);}
+.footer-brand-desc{font-size:.83rem;line-height:1.7;max-width:280px;}
+.footer-col-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:1rem;}
+.footer-links-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.footer-links-list a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.83rem;transition:color .2s;}
+.footer-links-list a:hover{color:var(--teal-l);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;font-size:.76rem;color:rgba(255,255,255,.3);position:relative;z-index:1;}
+
+/* ── FLOATING CALL BUTTON (mobile) ── */
+.fab-call{
+  display:none;
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:400;
+  background:var(--teal);color:#fff;
+  width:58px;height:58px;border-radius:50%;
+  align-items:center;justify-content:center;
+  font-size:1.5rem;box-shadow:0 6px 24px rgba(13,148,136,.45);
+  text-decoration:none;
+  animation:pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,.4);}50%{box-shadow:0 0 0 10px rgba(13,148,136,0);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ══════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+══════════════════════════════════ */
+@media(max-width:900px){
+  .topbar{display:none;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu{display:flex;}
+  .fab-call{display:flex;}
+
+  .hero{grid-template-columns:1fr;min-height:auto;padding:5.5rem 5vw 3.5rem;gap:2.5rem;}
+  .hero-tooth-bg{display:none;}
+  .hero h1{font-size:clamp(2rem,7vw,3rem);}
+  .hero-desc{max-width:100%;font-size:.97rem;}
+  .hero-right{flex-direction:row;flex-wrap:wrap;gap:1rem;}
+  .hero-card{flex:1;min-width:200px;}
+
+  .trust-strip{gap:1.2rem;padding:1rem 4vw;}
+  .trust-divider{display:none;}
+  .trust-item{font-size:.78rem;}
+
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+  .stat-num{font-size:2.2rem;}
+
+  .why{grid-template-columns:1fr;gap:2.5rem;}
+
+  .faq-wrap{grid-template-columns:1fr;gap:2rem;}
+  .faq-wrap>div:first-child svg{display:none;}
+
+  .hours-grid{grid-template-columns:1fr;gap:2rem;}
+
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE — MOBILE (max 600px)
+══════════════════════════════════ */
+@media(max-width:600px){
+  section{padding:3.5rem 5vw;}
+
+  .nav-inner{height:60px;}
+  .nav-logo-text{font-size:1rem;}
+
+  .hero{padding:4.5rem 5vw 3rem;gap:2rem;}
+  .hero h1{font-size:clamp(1.9rem,8vw,2.6rem);}
+  .hero-desc{font-size:.92rem;}
+  .hero-actions{flex-direction:column;gap:.75rem;}
+  .hero-actions .btn{width:100%;justify-content:center;}
+  .hero-right{flex-direction:column;}
+  .hero-card{min-width:unset;width:100%;}
+  .hero-reviews{flex-direction:row;flex-wrap:wrap;}
+
+  .trust-strip{flex-direction:column;gap:.6rem;padding:1rem 5vw;text-align:center;}
+  .trust-item{font-size:.8rem;justify-content:center;}
+
+  .services-grid{grid-template-columns:1fr;}
+
+  .stats-section{padding:3rem 5vw;}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:1.2rem;}
+  .stat-num{font-size:2rem;}
+  .stat-label{font-size:.7rem;}
+
+  .why-quote-card{padding:1.8rem 1.5rem;}
+  .why-quote-text{font-size:1.15rem;}
+  .why-stats{grid-template-columns:1fr 1fr;gap:.7rem;}
+  .why-stat-val{font-size:1.4rem;}
+
+  .rating-summary{flex-direction:column;gap:1rem;align-items:stretch;}
+  .rating-pill{justify-content:center;}
+  .reviews-grid{grid-template-columns:1fr;}
+
+  .faq-question{font-size:.83rem;padding:.9rem 1rem;}
+
+  .hours-table td{font-size:.83rem;padding:.75rem 0;}
+  .contact-card{padding:1.5rem;}
+
+  .cta-section{padding:3.5rem 5vw;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .cta-btns .btn{width:100%;justify-content:center;}
+
+  .footer-grid{grid-template-columns:1fr;gap:1.8rem;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:.5rem;}
+
+  .fab-call{width:54px;height:54px;font-size:1.35rem;bottom:1.2rem;right:1.2rem;}
+
+  /* hide decorative SVGs on very small screens */
+  .hero-canvas,.stats-canvas{display:none;}
+}
+
+/* ══════════════════════════════════
+   VERY SMALL (max 380px)
+══════════════════════════════════ */
+@media(max-width:380px){
+  .hero h1{font-size:1.7rem;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .stat-num{font-size:1.8rem;}
+}
+</style>
+<link rel="stylesheet" href="clyra.css" />
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>📍 2161 W 6th St, Los Angeles, CA 90057 · Grand Reopening &amp; Remodeled!</span>
+  <div class="topbar-right">
+    <a href="tel:+12134838222">📞 (213) 483-8222</a>
+    <a href="#hours">Hours</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="nav-logo-icon">🦷</div>
+      <div class="nav-logo-text">San Jose Dental<span>Los Angeles, CA</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="tel:+12134838222" class="nav-btn">📞 Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#services" class="mobile-link">🦷 Services</a></li>
+    <li><a href="#why" class="mobile-link">💡 About Us</a></li>
+    <li><a href="#reviews" class="mobile-link">⭐ Reviews</a></li>
+    <li><a href="#faq" class="mobile-link">❓ FAQ</a></li>
+    <li><a href="#hours" class="mobile-link">🕘 Hours &amp; Location</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="tel:+12134838222">📅 Book Appointment</a>
+  </div>
+  <div class="mobile-menu-phone">Or call us: <strong style="color:var(--teal);">(213) 483-8222</strong></div>
+</div>
+
+<!-- FLOATING CALL BUTTON (mobile) -->
+<a href="tel:+12134838222" class="fab-call" aria-label="Call us">📞</a>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="home">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <svg class="hero-tooth-bg" viewBox="0 0 200 260" fill="none">
+    <path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/>
+    <ellipse cx="80" cy="65" rx="12" ry="8" fill="rgba(255,255,255,0.3)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">⭐ Grand Reopening · Remodeled · 5.0 Stars</div>
+    <h1>Expert Dental Care<br>in <em>Los Angeles</em></h1>
+    <p class="hero-desc">At San Jose Dental Clinic, we deliver compassionate, affordable, and exceptional dental care to the Pico-Union community. Your best smile starts here.</p>
+    <div class="hero-actions">
+      <a href="tel:+12134838222" class="btn btn-primary">📅 Book Appointment</a>
+      <a href="#services" class="btn btn-ghost">View Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-top">
+        <div class="hero-card-icon">⭐</div>
+        <div class="hero-card-val">5.0</div>
+      </div>
+      <div class="stars">★★★★★</div>
+      <div class="hero-card-label" style="margin-top:.4rem;">Google Rating · 7 Reviews</div>
+    </div>
+    <div class="hero-card" style="background:linear-gradient(135deg,var(--navy),#1a3a5c);">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-l);margin-bottom:.4rem;">Patient Says</div>
+      <div style="font-family:'Playfair Display',serif;font-size:.95rem;color:#fff;font-style:italic;line-height:1.55;">"Best price in town — I was treated so well from the very first visit."</div>
+    </div>
+    <div class="hero-reviews">
+      <div class="review-avatars">
+        <div class="review-avatar">JM</div>
+        <div class="review-avatar">SR</div>
+        <div class="review-avatar">AL</div>
+        <div class="review-avatar" style="background:var(--teal);color:#fff;font-size:.6rem;">+4</div>
+      </div>
+      <div>
+        <strong style="font-size:.85rem;color:var(--navy);">7 happy patients rated us</strong>
+        <small style="display:block;font-size:.7rem;color:var(--g400);margin-top:.08rem;">All 5 stars on Google</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <canvas class="trust-strip-canvas" id="trustCanvas"></canvas>
+  <div class="trust-item">📍 2161 W 6th St, Los Angeles</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">📞 (213) 483-8222</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">🕘 Mon–Thu 9AM–6PM</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">✅ New Patients Welcome</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">💰 Best Prices in Town</div>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="services reveal" id="services">
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.025;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 600">
+    <defs><pattern id="crosses" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><line x1="30" y1="10" x2="30" y2="50" stroke="#0d9488" stroke-width="2"/><line x1="10" y1="30" x2="50" y2="30" stroke="#0d9488" stroke-width="2"/></pattern></defs>
+    <rect width="800" height="600" fill="url(#crosses)"/>
+  </svg>
+  <svg style="position:absolute;top:-40px;right:-30px;width:200px;opacity:.05;pointer-events:none;" viewBox="0 0 200 260" fill="none">
+    <path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/>
+  </svg>
+
+  <div class="services-head">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2 class="section-title">Comprehensive <em>Dental Services</em></h2>
+    <p class="section-desc">From routine cleanings to complete smile transformations — we cover every aspect of your oral health.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">🦷</div><h3>General Dentistry</h3><p>Cleanings, exams, fillings, and preventive care to keep your smile healthy all year.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">✨</div><h3>Teeth Whitening</h3><p>Professional whitening for a brighter, more confident smile you'll notice immediately.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">🔬</div><h3>Digital X-Rays</h3><p>Low-radiation digital imaging for precise, accurate, and safe assessments.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">🦴</div><h3>Extractions</h3><p>Gentle, stress-free extractions including wisdom teeth by our experienced team.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">👑</div><h3>Crowns &amp; Bridges</h3><p>Custom-fitted crowns and bridges restoring the look and full function of your smile.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">💎</div><h3>Cosmetic Dentistry</h3><p>Veneers, bonding, and makeovers for the smile you've always dreamed of.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">🛡️</div><h3>Root Canal Therapy</h3><p>Pain-relieving root canals performed with precision to save your natural tooth.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+    <div class="service-card"><svg style="position:absolute;bottom:6px;right:6px;width:46px;opacity:.06;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg><div class="svc-icon">😁</div><h3>Dentures</h3><p>Full and partial dentures custom-crafted to restore your smile and quality of life.</p><a href="tel:+12134838222" class="service-link">Book now →</a></div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section class="stats-section reveal">
+  <canvas class="stats-canvas" id="statsCanvas"></canvas>
+  <svg style="position:absolute;right:0;top:0;height:100%;width:200px;opacity:.06;pointer-events:none;" viewBox="0 0 200 200" preserveAspectRatio="xMaxYMid meet">
+    <circle cx="200" cy="100" r="80" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="200" cy="100" r="120" fill="none" stroke="#fff" stroke-width="1"/>
+  </svg>
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-num" data-target="5" data-decimal="true">5.0</span><div class="stat-label">★ Google Rating</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="7">7+</span><div class="stat-label">5-Star Reviews</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="8">8+</span><div class="stat-label">Services Offered</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="1">#1</span><div class="stat-label">Best Price in Area</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY US ═══════════ -->
+<section id="why" class="reveal">
+  <canvas style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" id="whyCanvas"></canvas>
+  <svg style="position:absolute;right:-40px;bottom:-40px;width:240px;opacity:.04;pointer-events:none;" viewBox="0 0 200 200">
+    <path d="M20,80 Q100,160 180,80" fill="none" stroke="#0d9488" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="100" cy="60" r="50" fill="none" stroke="#0d9488" stroke-width="6"/>
+  </svg>
+  <div class="why">
+    <div class="why-quote-card">
+      <svg style="position:absolute;right:16px;bottom:16px;width:70px;opacity:.12;pointer-events:none;" viewBox="0 0 200 260" fill="none">
+        <path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#14b8a8"/>
+      </svg>
+      <div class="why-quote-text">"Took a lot of work but the doc was so warm and encouraging. Best dental experience I've ever had."</div>
+      <div class="why-author">— Verified Patient · Google Review</div>
+      <div class="why-stats">
+        <div class="why-stat"><div class="why-stat-val">5.0★</div><div class="why-stat-label">Avg. Rating</div></div>
+        <div class="why-stat"><div class="why-stat-val">7+</div><div class="why-stat-label">5-Star Reviews</div></div>
+        <div class="why-stat"><div class="why-stat-val">#1</div><div class="why-stat-label">Best Price</div></div>
+        <div class="why-stat"><div class="why-stat-val">❤️</div><div class="why-stat-label">Warm Doctors</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Why Choose Us</div>
+      <h2 class="section-title">Care That Goes<br><em>Beyond the Chair</em></h2>
+      <p class="section-desc">We combine clinical expertise with genuine warmth. Every patient is treated like family.</p>
+      <div class="why-features">
+        <div class="why-feature"><div class="why-feature-check">✓</div><div><h4>Perfect 5-Star Rating</h4><p>Our patients consistently rate us 5 stars. Our work and reputation speak for themselves.</p></div></div>
+        <div class="why-feature"><div class="why-feature-check">✓</div><div><h4>Best Prices in Town</h4><p>Transparent, affordable pricing — quality dental care should never be out of reach.</p></div></div>
+        <div class="why-feature"><div class="why-feature-check">✓</div><div><h4>Warm &amp; Encouraging Team</h4><p>Our doctors put even the most anxious patients completely at ease every visit.</p></div></div>
+        <div class="why-feature"><div class="why-feature-check">✓</div><div><h4>Newly Remodeled Facility</h4><p>A modern, comfortable space with the latest dental technology for the best experience.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ REVIEWS ═══════════ -->
+<section class="reviews-section reveal" id="reviews">
+  <canvas style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5;" id="reviewsCanvas"></canvas>
+  <svg style="position:absolute;right:4%;top:8%;width:140px;opacity:.04;pointer-events:none;" viewBox="0 0 100 100"><polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="#d4a843"/></svg>
+  <div class="reviews-inner">
+    <div class="reviews-head">
+      <div class="section-eyebrow">Patient Stories</div>
+      <h2 class="section-title">What Our <em>Patients Say</em></h2>
+      <p class="section-desc">Real words from real patients — hear what makes San Jose Dental the best choice in Los Angeles.</p>
+    </div>
+    <div class="rating-summary">
+      <div class="rating-pill"><div><div class="rating-pill-score">5.0</div><div class="stars" style="font-size:.78rem;">★★★★★</div></div><div class="rating-pill-info"><strong style="font-size:.83rem;color:var(--navy);">Google Reviews</strong><small>7 verified reviews</small></div></div>
+      <div class="rating-pill"><div style="font-size:1.4rem;">🏆</div><div class="rating-pill-info"><strong style="font-size:.83rem;color:var(--navy);">Best Price in Area</strong><small>Patients agree</small></div></div>
+      <div class="rating-pill"><div style="font-size:1.4rem;">❤️</div><div class="rating-pill-info"><strong style="font-size:.83rem;color:var(--navy);">Most Caring Doctors</strong><small>Warm &amp; encouraging</small></div></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"For my first time there I was treated so well, and I can't lie — best price in town. Will definitely be coming back!"</p><div class="review-card-author">First-Time Patient</div><div class="review-card-date">Verified Google Review</div></div>
+      <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Make sure to check them out — the best doctor in the area! I highly recommend to everyone I know."</p><div class="review-card-author">Loyal Patient</div><div class="review-card-date">Verified Google Review</div></div>
+      <div class="review-card"><div class="review-card-stars">★★★★★</div><p class="review-card-text">"Took a lot of work but the doc was so warm and encouraging. I felt completely at ease the entire time."</p><div class="review-card-author">Long-Time Patient</div><div class="review-card-date">Verified Google Review</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq-section reveal" id="faq">
+  <svg style="position:absolute;left:-40px;bottom:-40px;width:220px;opacity:.04;pointer-events:none;" viewBox="0 0 200 260" fill="none"><path d="M100 10 C60 10 30 40 30 80 C30 100 36 118 46 132 C56 148 60 165 60 190 C60 215 68 250 80 250 C90 250 95 230 100 210 C105 230 110 250 120 250 C132 250 140 215 140 190 C140 165 144 148 154 132 C164 118 170 100 170 80 C170 40 140 10 100 10Z" fill="#0d9488"/></svg>
+  <svg style="position:absolute;right:0;top:0;width:200px;height:100%;opacity:.04;pointer-events:none;" preserveAspectRatio="xMaxYMid slice" viewBox="0 0 200 500"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#0d9488"/></pattern></defs><rect width="200" height="500" fill="url(#dots)"/></svg>
+  <div class="faq-wrap">
+    <div>
+      <div class="section-eyebrow">Common Questions</div>
+      <h2 class="section-title">Frequently<br><em>Asked Questions</em></h2>
+      <p class="section-desc" style="margin-top:.75rem;">Have questions? We have answers. Feel free to call us anytime.</p>
+      <svg style="margin-top:2rem;width:120px;animation:float 5s ease-in-out infinite;" viewBox="0 0 200 260" fill="none">
+        <path d="M100 18 C64 18 38 46 38 82 C38 102 44 118 53 131 C63 147 67 164 67 188 C67 212 74 242 83 242 C91 242 96 222 100 204 C104 222 109 242 117 242 C126 242 133 212 133 188 C133 164 137 147 147 131 C156 118 162 102 162 82 C162 46 136 18 100 18Z" fill="#0d9488" opacity=".18"/>
+        <ellipse cx="82" cy="66" rx="13" ry="9" fill="#0d9488" opacity=".35"/>
+        <ellipse cx="82" cy="66" rx="7" ry="5" fill="#fff" opacity=".45"/>
+        <path d="M70 40 Q80 30 90 38" fill="none" stroke="#14b8a8" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+        <line x1="155" y1="30" x2="155" y2="42" stroke="#d4a843" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+        <line x1="149" y1="36" x2="161" y2="36" stroke="#d4a843" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+      </svg>
+      <br/>
+      <a href="tel:+12134838222" class="btn btn-primary" style="margin-top:1rem;">📞 Call Us Directly</a>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-question">Are you accepting new patients? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes! We warmly welcome new patients. Whether it's your first dental visit or you're switching providers, we'll make you feel right at home from the moment you walk in.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you offer affordable payment options? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Absolutely. We're known for offering the best prices in the area without compromising on quality. We'll always discuss costs clearly before any treatment begins.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What should I expect on my first visit? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Your first visit includes a full examination, X-rays if needed, and a friendly conversation about your dental goals. Our team will make sure you're comfortable every step of the way.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you treat patients with dental anxiety? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes. Our doctors are known for their warm, patient, and encouraging approach. Many anxious patients say it was the most comfortable dental experience they've ever had.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Where are you located? Is parking available? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">We're at 2161 W 6th St, Los Angeles, CA 90057 in Pico-Union. Street parking is available nearby. Call us if you need directions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What cosmetic services do you offer? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">We offer teeth whitening, veneers, composite bonding, smile makeovers, crowns, and more. All treatments are tailored to look natural and beautiful for your unique smile.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOURS ═══════════ -->
+<section class="hours-section reveal" id="hours">
+  <svg style="position:absolute;top:0;left:0;width:100%;pointer-events:none;" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0Z" fill="#fff" opacity=".5"/></svg>
+  <svg style="position:absolute;right:4vw;top:3rem;width:120px;opacity:.05;pointer-events:none;" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#0d9488" stroke-width="4"/>
+    <line x1="50" y1="50" x2="50" y2="20" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="50" y1="50" x2="68" y2="58" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="3" fill="#0d9488"/>
+    <line x1="50" y1="8" x2="50" y2="14" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="50" y1="86" x2="50" y2="92" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="8" y1="50" x2="14" y2="50" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="86" y1="50" x2="92" y2="50" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <div class="section-eyebrow">Visit Us</div>
+  <h2 class="section-title">Hours &amp; <em>Location</em></h2>
+  <div class="hours-grid">
+    <div>
+      <table class="hours-table">
+        <tr><td>Monday</td><td>9:00 AM – 6:00 PM</td></tr>
+        <tr><td>Tuesday</td><td>9:00 AM – 6:00 PM</td></tr>
+        <tr><td>Wednesday</td><td>9:00 AM – 6:00 PM</td></tr>
+        <tr><td>Thursday</td><td>9:00 AM – 6:00 PM</td></tr>
+        <tr><td>Friday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr class="closed-day"><td>Saturday</td><td>Closed</td></tr>
+        <tr class="closed-day"><td>Sunday</td><td>Closed</td></tr>
+      </table>
+      <p style="margin-top:1.2rem;font-size:.8rem;color:var(--g400);">* Hours may vary on holidays. Please call to confirm.</p>
+    </div>
+    <div class="contact-card">
+      <h3>Get In Touch</h3>
+      <div class="contact-row"><div class="contact-row-icon">📍</div><div class="contact-row-body"><strong>Address</strong><span>2161 W 6th St, Los Angeles, CA 90057</span></div></div>
+      <div class="contact-row"><div class="contact-row-icon">📞</div><div class="contact-row-body"><strong>Phone</strong><span><a href="tel:+12134838222">(213) 483-8222</a></span></div></div>
+      <div class="contact-row"><div class="contact-row-icon">🕘</div><div class="contact-row-body"><strong>Next Opening</strong><span>Monday at 9:00 AM</span></div></div>
+      <div class="contact-row"><div class="contact-row-icon">🌐</div><div class="contact-row-body"><strong>Neighborhood</strong><span>Pico-Union, Los Angeles</span></div></div>
+      <a href="tel:+12134838222" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem;">📅 Call to Book an Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section">
+  <canvas style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" id="ctaCanvas"></canvas>
+  <svg style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(70vw,500px);opacity:.05;pointer-events:none;" viewBox="0 0 300 200">
+    <path d="M30,80 Q150,180 270,80" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round"/>
+    <circle cx="150" cy="42" r="130" fill="none" stroke="#fff" stroke-width="4" opacity=".5"/>
+  </svg>
+  <div class="cta-inner">
+    <h2>Ready for Your Best Smile?</h2>
+    <p>New patients welcome. Affordable care. Warm, expert doctors — right here in Los Angeles.</p>
+    <div class="cta-btns">
+      <a href="tel:+12134838222" class="btn btn-white">📞 Call (213) 483-8222</a>
+      <a href="#services" class="btn btn-outline-white">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg style="position:absolute;right:-60px;top:-60px;width:280px;opacity:.04;pointer-events:none;" viewBox="0 0 200 200"><circle cx="150" cy="50" r="100" fill="none" stroke="#14b8a8" stroke-width="2"/><circle cx="150" cy="50" r="65" fill="none" stroke="#14b8a8" stroke-width="1"/></svg>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">San Jose <span>Dental</span></div>
+      <p class="footer-brand-desc">Providing the best dental care in Los Angeles with compassion, expertise, and the most affordable prices in town.</p>
+      <p style="margin-top:1rem;font-size:.82rem;">📞 <a href="tel:+12134838222" style="color:var(--teal-l);text-decoration:none;">(213) 483-8222</a></p>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links-list">
+        <li><a href="#services">General Dentistry</a></li>
+        <li><a href="#services">Teeth Whitening</a></li>
+        <li><a href="#services">Crowns &amp; Bridges</a></li>
+        <li><a href="#services">Root Canal Therapy</a></li>
+        <li><a href="#services">Cosmetic Dentistry</a></li>
+        <li><a href="#services">Dentures</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Clinic</div>
+      <ul class="footer-links-list">
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#hours">Hours &amp; Location</a></li>
+        <li><a href="tel:+12134838222">Book Appointment</a></li>
+      </ul>
+      <div style="margin-top:1.5rem;">
+        <div class="footer-col-title">Address</div>
+        <p style="font-size:.82rem;line-height:1.65;">2161 W 6th St<br>Los Angeles, CA 90057</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 San Jose Dental Clinic · Los Angeles, CA</span>
+    <span>⭐ 5.0 Stars · Best Price in Town</span>
+  </div>
+</footer>
+
+<script>
+/* ── HAMBURGER MENU ── */
+const ham=document.getElementById('hamburger');
+const menu=document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  menu.classList.toggle('active');
+  document.body.classList.toggle('menu-open');
+});
+document.querySelectorAll('.mobile-link').forEach(link=>{
+  link.addEventListener('click',()=>{
+    ham.classList.remove('open');
+    menu.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  });
+});
+
+/* ── HERO CANVAS ── */
+(function(){
+  const c=document.getElementById('heroCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,bubbles=[];
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;bubbles=[];for(let i=0;i<22;i++)bubbles.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*22+5,vx:(Math.random()-.5)*.3,vy:-(Math.random()*.4+.1),alpha:Math.random()*.05+.02,color:Math.random()>.5?'13,148,136':'212,168,67'});}
+  init();window.addEventListener('resize',init);
+  let t=0;
+  function draw(){ctx.clearRect(0,0,W,H);t+=.012;
+    for(let w=0;w<3;w++){ctx.beginPath();for(let x=0;x<=W;x+=4){const y=H*(.5+w*.12)+Math.sin(x*.006+t+w*1.2)*20;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.strokeStyle=`rgba(13,148,136,${.022-w*.005})`;ctx.lineWidth=1.5;ctx.stroke();}
+    bubbles.forEach(b=>{ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=`rgba(${b.color},${b.alpha})`;ctx.fill();b.x+=b.vx;b.y+=b.vy;if(b.y<-b.r){b.y=H+b.r;b.x=Math.random()*W;}if(b.x<-b.r)b.x=W+b.r;if(b.x>W+b.r)b.x=-b.r;});
+    requestAnimationFrame(draw);}draw();
+})();
+
+/* ── TRUST STRIP CANVAS ── */
+(function(){
+  const c=document.getElementById('trustCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,dots=[];
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;dots=[];for(let i=0;i<25;i++)dots.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.5,vx:(Math.random()-.5)*.5,alpha:Math.random()*.12+.04});}
+  init();window.addEventListener('resize',init);
+  function draw(){ctx.clearRect(0,0,W,H);dots.forEach(d=>{ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${d.alpha})`;ctx.fill();d.x+=d.vx;if(d.x<0)d.x=W;if(d.x>W)d.x=0;});requestAnimationFrame(draw);}draw();
+})();
+
+/* ── STATS CANVAS ── */
+(function(){
+  const c=document.getElementById('statsCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H;
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  init();window.addEventListener('resize',init);
+  let t=0;
+  function draw(){ctx.clearRect(0,0,W,H);t+=.008;const sp=50;ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;
+    for(let x=-sp;x<W+sp;x+=sp){const ox=Math.sin(t+x*.01)*7;ctx.beginPath();ctx.moveTo(x+ox,0);ctx.lineTo(x+ox,H);ctx.stroke();}
+    for(let y=0;y<H+sp;y+=sp){const oy=Math.cos(t+y*.01)*5;ctx.beginPath();ctx.moveTo(0,y+oy);ctx.lineTo(W,y+oy);ctx.stroke();}
+    requestAnimationFrame(draw);}draw();
+})();
+
+/* ── WHY CANVAS ── */
+(function(){
+  const c=document.getElementById('whyCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,pts=[];
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;pts=[];for(let i=0;i<35;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*2+.5});}
+  init();window.addEventListener('resize',init);
+  function draw(){ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(13,148,136,${.035*(1-d/110)})`;ctx.lineWidth=1;ctx.stroke();}}
+    pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(13,148,136,0.07)';ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;});
+    requestAnimationFrame(draw);}draw();
+})();
+
+/* ── REVIEWS CANVAS ── */
+(function(){
+  const c=document.getElementById('reviewsCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,stars=[];
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;stars=[];for(let i=0;i<18;i++)stars.push({x:Math.random()*W,y:Math.random()*H,size:Math.random()*12+5,vx:(Math.random()-.5)*.18,vy:-(Math.random()*.12+.04),rot:Math.random()*Math.PI*2,rotV:(Math.random()-.5)*.008,alpha:Math.random()*.05+.02});}
+  init();window.addEventListener('resize',init);
+  function drawStar(x,y,size,rot,alpha){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.globalAlpha=alpha;ctx.fillStyle='#d4a843';ctx.beginPath();for(let i=0;i<5;i++){const a=i*Math.PI*.4-Math.PI/2,b=a+Math.PI*.2;i===0?ctx.moveTo(Math.cos(a)*size,Math.sin(a)*size):ctx.lineTo(Math.cos(a)*size,Math.sin(a)*size);ctx.lineTo(Math.cos(b)*size*.45,Math.sin(b)*size*.45);}ctx.closePath();ctx.fill();ctx.restore();}
+  function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{drawStar(s.x,s.y,s.size,s.rot,s.alpha);s.x+=s.vx;s.y+=s.vy;s.rot+=s.rotV;if(s.y<-s.size*2){s.y=H+s.size;s.x=Math.random()*W;}});requestAnimationFrame(draw);}draw();
+})();
+
+/* ── CTA CANVAS ── */
+(function(){
+  const c=document.getElementById('ctaCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,shapes=[];
+  function init(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;shapes=[];for(let i=0;i<14;i++)shapes.push({x:Math.random()*W,y:Math.random()*H,sz:Math.random()*20+8,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,rot:Math.random()*Math.PI*2,rotV:(Math.random()-.5)*.01,alpha:Math.random()*.08+.03});}
+  init();window.addEventListener('resize',init);
+  function drawTooth(cx,cy,sz,rot,alpha){ctx.save();ctx.translate(cx,cy);ctx.rotate(rot);ctx.globalAlpha=alpha;ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(0,-sz*.15,sz*.32,sz*.42,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(-sz*.1,sz*.38,sz*.11,sz*.26,-.3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(sz*.11,sz*.36,sz*.10,sz*.23,.3,0,Math.PI*2);ctx.fill();ctx.restore();}
+  function draw(){ctx.clearRect(0,0,W,H);shapes.forEach(s=>{drawTooth(s.x,s.y,s.sz,s.rot,s.alpha);s.x+=s.vx;s.y+=s.vy;s.rot+=s.rotV;if(s.x<-40)s.x=W+40;if(s.x>W+40)s.x=-40;if(s.y<-40)s.y=H+40;if(s.y>H+40)s.y=-40;});requestAnimationFrame(draw);}draw();
+})();
+
+/* ── SCROLL REVEAL ── */
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ── FAQ ── */
+document.querySelectorAll('.faq-question').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item');
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+/* ── STATS COUNTER ── */
+const sio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;sio.unobserve(e.target);
+    const el=e.target,target=parseFloat(el.dataset.target),isDecimal=el.dataset.decimal==='true';
+    const dur=1400,start=performance.now();
+    (function step(now){const p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3),val=target*ease;
+      if(target===1)el.textContent='#1';else el.textContent=isDecimal?val.toFixed(1):Math.round(val)+'+';
+      if(p<1)requestAnimationFrame(step);else el.textContent=isDecimal?target.toFixed(1):(target===1?'#1':target+'+');
+    })(start);
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-num[data-target]').forEach(n=>sio.observe(n));
+</script>
+<script src="clyra.js"></script>
+</body>
+</html>
