@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Appointment {
+  id        String   @id @default(uuid())
+  name      String
+  age       Int
+  doctor    String
+  date      String
+  time      String
+  problem   String?
+  createdAt DateTime @default(now())
+}
+
+model ChatLog {
+  id          String   @id @default(uuid())
+  sessionId   String
+  userMessage String
+  botResponse String
+  createdAt   DateTime @default(now())
+}
+
+model Session {
+  id        String   @id
+  state     String   @default("INIT")
+  doctor    String?
+  date      String?
+  time      String?
+  name      String?
+  age       Int?
+  problem   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
